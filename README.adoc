@@ -1,1 +1,23 @@
 = RoliK
+
+ROgueLIke game engine for Kotlin.
+
+== Getting started
+
+.Run example game
+[source,bash]
+----
+$ ./gradlew game:run --console=plain
+----
+
+.Build and run checks and tests
+[source,bash]
+----
+$ ./gradlew build
+----
+
+.Generate docs
+[source,bash]
+----
+$ ./gradlew dokkaHtml
+----
