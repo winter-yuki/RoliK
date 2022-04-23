@@ -32,8 +32,8 @@ class StarCraft3(size: Size) : AbstractGame(size) {
     }
 }
 
-private fun Level.placePlayer(model: Model, nTries: Int = 100): Player {
-    val rnd = Random(42)
+private fun Level.placePlayer(model: Model, nTries: Int = 100, seed: Int = 42): Player {
+    val rnd = Random(seed)
     val fieldSize = this.model.size
     repeat(nTries) {
         val pos = Position(

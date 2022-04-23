@@ -1,5 +1,7 @@
 plugins {
     kotlin("jvm")
+    id("io.gitlab.arturbosch.detekt")
+    id("org.jetbrains.dokka")
 }
 
 dependencies {
@@ -18,4 +20,11 @@ sourceSets {
         java.setSrcDirs(listOf("test"))
         resources.setSrcDirs(listOf("testResources"))
     }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false // Activates all, even unstable rules
+    source.setFrom(listOf("src"))
+    config = files("$projectDir/config/detekt.yml")
 }

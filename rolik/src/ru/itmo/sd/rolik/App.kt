@@ -29,7 +29,7 @@ class App(
         var lastNotification = System.currentTimeMillis().milliseconds
         while (true) {
             repeat(
-                duration = (1000 / fps).milliseconds,
+                duration = (MILLIS_IN_SECS / fps).milliseconds,
                 interval = 50.milliseconds
             ) {
                 val time = System.currentTimeMillis().milliseconds
@@ -44,5 +44,9 @@ class App(
             val frame = root.render(screen.size)
             screen.update(frame)
         }
+    }
+
+    companion object {
+        private const val MILLIS_IN_SECS = 1000
     }
 }
