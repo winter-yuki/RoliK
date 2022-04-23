@@ -3,6 +3,7 @@ package ru.itmo.sd.rolik.game
 import ru.itmo.sd.rolik.Position
 import ru.itmo.sd.rolik.Size
 
+@kotlinx.serialization.Serializable
 data class Level(override val position: Position, override val model: Model) : Entity {
     private val busy = visiblePositions.toSet()
 

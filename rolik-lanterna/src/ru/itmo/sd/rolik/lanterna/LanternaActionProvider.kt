@@ -19,6 +19,8 @@ internal class LanternaActionProvider(private val screen: TerminalScreen) : Acti
             KeyType.ArrowRight -> ru.itmo.sd.rolik.KeyType.ArrowRight
             KeyType.EOF -> ru.itmo.sd.rolik.KeyType.EOF
             KeyType.Escape -> ru.itmo.sd.rolik.KeyType.ESC
+            KeyType.F1 -> ru.itmo.sd.rolik.KeyType.F1
+            KeyType.F2 -> ru.itmo.sd.rolik.KeyType.F2
             else -> return null
         }
         return KeyPressedAction(key)

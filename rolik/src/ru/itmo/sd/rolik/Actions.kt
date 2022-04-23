@@ -16,7 +16,7 @@ interface ActionProvider {
 }
 
 enum class KeyType {
-    ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ESC, EOF
+    ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ESC, EOF, F1, F2
 }
 
 data class KeyPressedAction(val key: KeyType) : Action

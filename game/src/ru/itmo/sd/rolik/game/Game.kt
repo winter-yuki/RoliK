@@ -1,16 +1,22 @@
 package ru.itmo.sd.rolik.game
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.serializer
 import ru.itmo.sd.rolik.Action
 import ru.itmo.sd.rolik.KeyPressedAction
 import ru.itmo.sd.rolik.KeyType
 import ru.itmo.sd.rolik.Position
 import ru.itmo.sd.rolik.Size
+import java.nio.file.Path
+import kotlin.io.path.readText
+import kotlin.io.path.writeText
 import kotlin.random.Random
 
+@kotlinx.serialization.Serializable
 data class Player(override val position: Position, override val model: Model) : Entity
 
 class StarCraft3(size: Size) : AbstractGame(size) {
-    private val level = Level.generate(size)
+    private var level = Level.generate(size)
     private var player = level.placePlayer(Model('@'))
 
     override val entities: Iterable<Entity>
@@ -29,6 +35,31 @@ class StarCraft3(size: Size) : AbstractGame(size) {
         if (updated notIntersects level) {
             player = updated
         }
+        when (action.key) {
+            KeyType.F1 -> save(savePath)
+            KeyType.F2 -> load(savePath)
+            else -> {}
+        }
+    }
+
+    @kotlinx.serialization.Serializable
+    private data class Save(val level: Level, val player: Player)
+
+    private fun save(path: Path) {
+        val save = Save(level, player)
+        val string = Json.encodeToString(serializer(), save)
+        path.writeText(string)
+    }
+
+    private fun load(path: Path) {
+        val string = path.readText()
+        val load = Json.decodeFromString(serializer<Save>(), string)
+        level = load.level
+        player = load.player
+    }
+
+    companion object {
+        private val savePath = Path.of("game.save")
     }
 }
 

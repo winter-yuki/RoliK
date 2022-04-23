@@ -16,6 +16,7 @@ internal suspend inline fun repeat(duration: Duration, interval: Duration = 0.mi
     }
 }
 
+@kotlinx.serialization.Serializable
 data class Position(val iRow: Int, val iCol: Int)
 
 data class Size(val nRows: Int, val nCols: Int) {

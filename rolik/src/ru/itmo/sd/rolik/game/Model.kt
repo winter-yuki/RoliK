@@ -5,6 +5,7 @@ import ru.itmo.sd.rolik.Size
 /**
  * Model of the [Entity] to be rendered.
  */
+@kotlinx.serialization.Serializable
 @JvmInline
 value class Model(val strings: List<String>) {
     val size: Size
