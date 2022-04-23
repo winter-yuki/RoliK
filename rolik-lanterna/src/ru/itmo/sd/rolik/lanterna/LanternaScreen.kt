@@ -15,7 +15,7 @@ internal class LanternaScreen(private val screen: TerminalScreen) : Screen {
         get() = Size(nRows = screen.terminalSize.rows, nCols = screen.terminalSize.columns)
 
     override fun update(frame: Frame) {
-        frame.frame.value.forEachIndexed { i, line ->
+        frame.strings.forEachIndexed { i, line ->
             graphics.putString(0, i, line)
         }
         screen.refresh()

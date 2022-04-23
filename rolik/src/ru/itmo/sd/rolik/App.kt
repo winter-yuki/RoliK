@@ -12,6 +12,10 @@ class App(
     private val screen: Screen,
     private val actionProvider: ActionProvider,
     private val fps: Int = 60,
+    private val exitActions: Set<Action> = setOf(
+        KeyPressedAction(KeyType.ESC),
+        KeyPressedAction(KeyType.EOF)
+    ),
 ) {
     init {
         require(fps > 0)
@@ -40,9 +44,5 @@ class App(
             val frame = root.render(screen.size)
             screen.update(frame)
         }
-    }
-
-    companion object {
-        private val exitActions = setOf(KeyPressedAction(KeyType.ESC), KeyPressedAction(KeyType.EOF))
     }
 }

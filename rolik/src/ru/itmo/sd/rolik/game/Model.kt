@@ -1,11 +1,16 @@
 package ru.itmo.sd.rolik.game
 
-import ru.itmo.sd.rolik.Matrix
+import ru.itmo.sd.rolik.Size
 
 /**
  * Model of the [Entity] to be rendered.
  */
 @JvmInline
-value class Model(val repr: Matrix)
+value class Model(val strings: List<String>) {
+    val size: Size
+        get() = Size(nRows = strings.size, nCols = strings.first().length)
+}
 
-fun Model(ss: List<String>): Model = Model(Matrix(ss))
+fun Model(s: String): Model = Model(listOf(s))
+
+fun Model(c: Char): Model = Model(c.toString())

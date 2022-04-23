@@ -4,7 +4,7 @@ import kotlin.time.Duration
 
 /**
  * [Actions][Action] are results of interaction between
- * the actor outside (user/server...) and the game.
+ * the actor outside (user/server/timer...) and the game.
  */
 interface Action
 

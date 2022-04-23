@@ -7,7 +7,7 @@ ROgueLIke game engine for Kotlin.
 .Run example game
 [source,bash]
 ----
-$ ./gradlew game:run --console=plain
+$ ./gradlew game:run
 ----
 
 .Build and run checks and tests
@@ -21,3 +21,9 @@ $ ./gradlew build
 ----
 $ ./gradlew dokkaHtml
 ----
+
+== Repository organization
+
+* *rolik* -- game engine core
+* *rolik-lanterna* -- terminal UI implementation with Lanterna lib
+* *game* -- an example game

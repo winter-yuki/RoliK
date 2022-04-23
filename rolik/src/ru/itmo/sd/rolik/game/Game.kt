@@ -6,20 +6,25 @@ import ru.itmo.sd.rolik.ui.Widget
 
 interface Game : Widget
 
-abstract class AbstractGame(private val size: Size) : Game {
-    abstract val entities: List<Entity>
+abstract class AbstractGame(private val fieldSize: Size) : Game {
+    abstract val entities: Iterable<Entity>
 
     override fun render(size: Size): Frame {
-        if (size != this.size) TODO("Focus view on some entry and crop")
-        val field = MutableList(size.nRows) { MutableList(size.nCols) { ' ' } }
+        // Can be removed by focusing view on some entry and crop
+        require(size == fieldSize) { "All field should be visible" }
+        val frame = MutableList(size.nRows) { MutableList(size.nCols) { ' ' } }
         entities.forEach { entity ->
-            val matrix = entity.model.repr.value
-            matrix.forEachIndexed { iRow, line ->
-                line.forEachIndexed { iCol, c ->
-                    field[entity.position.iRow + iRow][entity.position.iCol + iCol] = c
+            val matrix = entity.model.strings
+            matrix.forEachIndexed rows@{ dRow, line ->
+                val iRow = entity.position.iRow + dRow
+                if (iRow < 0 || iRow >= size.nRows) return@rows
+                line.forEachIndexed cols@{ dCol, c ->
+                    val iCol = entity.position.iCol + dCol
+                    if (iCol < 0 || iCol >= size.nCols) return@cols
+                    frame[iRow][iCol] = c
                 }
             }
         }
-        return Frame(field.map { it.joinToString("") })
+        return Frame(frame.map { it.joinToString("") })
     }
 }
