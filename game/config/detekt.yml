@@ -1,0 +1,7 @@
+style:
+  MagicNumber:
+    excludes:
+      - '**/Level.kt' # Maze generation magic
+  UnusedPrivateMember:
+    excludes:
+      - '**/Level.kt' # Bug in detekt
